@@ -19,4 +19,21 @@ spec:
       serviceAccountName: hip-operator
       containers:
         - name: pikube-dns
-          image: silvertoken/pikube-dns:0.0.1
+          image: silvertoken/pikube-dns:main
+          imagePullPolicy: Always
+          env: 
+            - name: USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: dns-secret
+                  key: user
+            - name: PASSWD
+              valueFrom:
+                secretKeyRef:
+                  name: dns-secret
+                  key: passwd
+            - name: ROUTER
+              valueFrom:
+                configMapKeyRef:
+                  name: dns-config
+                  key: router
