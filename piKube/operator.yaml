@@ -1,0 +1,22 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pikube-dns
+  namespace: hip
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      application: pikube-dns
+  template:
+    metadata:
+      labels:
+        application: pikube-dns
+    spec:
+      serviceAccountName: hip-operator
+      containers:
+        - name: pikube-dns
+          image: silvertoken/pikube-dns:0.0.1
