@@ -61,4 +61,4 @@ COPY --from=builder /usr/bin/kopf /usr/bin/kopf
 WORKDIR /src
 ADD pikube-dns.py /src
 
-CMD ["kopf", "run", "/src/pikube-dns.py", "--verbose"]
+CMD ["kopf", "run", "/src/pikube-dns.py", "--all-namespaces", "--verbose"]

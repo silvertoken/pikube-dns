@@ -57,7 +57,8 @@ except kclient.rest.ApiException as e:
 
 @kopf.on.startup()
 def configure(settings: kopf.OperatorSettings, **_):
-    settings.peering.priority = 10
+    settings.peering.name = "dns"
+    settings.peering.mandatory = True
     
 @kopf.on.create('operators.silvertoken.github.io', 'v1', 'dns')
 def on_dns_create(namespace, spec, body, **kwargs):
